@@ -5,9 +5,9 @@ services:
         build: ./${WEB_SERVER_TYPE}
         container_name: webserver
         depends_on:
-            - source
+            - bsource
         volumes_from:
-            - source
+            - bsource
         ports:
             - '80:80'
             - '443:443'
@@ -18,7 +18,7 @@ services:
         build: ./${DB_SERVER_TYPE}
         container_name: mysql
         volumes_from:
-            - source
+            - bsource
         ports:
             - '3306:3306'
         environment:
@@ -33,15 +33,15 @@ services:
         image: memcached:1.5-alpine
         container_name: memcached
         volumes_from:
-            - source
+            - bsource
         ports:
             - '11211:11211'
         networks:
             - bitrix
         restart: always
-    source:
+    bsource:
         image: alpine:latest
-        container_name: source
+        container_name: bsource
         volumes:
             - ./logs/${WEB_SERVER_TYPE}:/var/log/${WEB_SERVER_TYPE}
             - ./logs/php:/var/log/php

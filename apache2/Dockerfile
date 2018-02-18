@@ -37,6 +37,7 @@ COPY ./conf/php.ini /etc/php/7.0/cli/php.ini
 
 COPY ./conf/conf-available/* /etc/apache2/conf-available/
 COPY ./conf/mods-available/* /etc/apache2/mods-available/
+COPY ./conf/sites-available/* /etc/apache2/sites-available/
 
 RUN a2enmod remoteip && a2enconf remoteip && a2enmod php7.0 && a2enmod rewrite 
 #ADD http://www.1c-bitrix.ru/download/scripts/bitrixsetup.php /var/www/html
